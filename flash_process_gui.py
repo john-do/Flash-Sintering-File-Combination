@@ -1,3 +1,5 @@
+#!/usr/bin/env python2.7
+
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtGui import QComboBox
 import sys
