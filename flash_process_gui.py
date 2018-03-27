@@ -7,15 +7,20 @@ class SetUp(QtGui.QWidget):
     def __init__(self):
         super(self.__class__,self).__init__()
         ## Operating vars
-        test = True
+        # Default file is csv
+        
+        # set test = True to run test without having to select files every time
+        # test files located in ./test_files/ see below
+        test = False
         self.delimiter = ','
         
-        #Files
+        # Files holders
         self.t_file = ''
         self.v_file = ''
         self.i_file = ''
         self.save_file = ''
         
+        # Default test files
         if test == True:
             self.t_file = './test_files/T.log'
             self.v_file = './test_files/V.csv'
@@ -28,7 +33,8 @@ class SetUp(QtGui.QWidget):
         ##Window Properties
         self.setWindowTitle("Flash Combination")
         self.resize(300,450)
-        ## Build Layout
+        
+        ## Build Gui Layout
         grid = QtGui.QGridLayout(self)
         grid.setSpacing(20)
         t_lbl = QtGui.QLabel('Temperature File', self)
@@ -77,7 +83,7 @@ class SetUp(QtGui.QWidget):
         
         self.setLayout(grid)
             
-        ## Build Connections:
+        ## Build widget connections:
         self.t_btn.clicked.connect(self.get_tfile)
         self.v_btn.clicked.connect(self.get_vfile)
         self.i_btn.clicked.connect(self.get_ifile)
@@ -85,6 +91,10 @@ class SetUp(QtGui.QWidget):
         self.save_btn.clicked.connect(self.get_outfile)
         run_btn.clicked.connect(self.run_matching)
     
+    
+    ## Widget Functions
+    
+    # Get data files
     def get_tfile(self):
         self.t_file = QtGui.QFileDialog.getOpenFileName(self,'Open File', ""," (*.txt *.csv *.log)")
         self.t_btn.setText('Done')
@@ -100,7 +110,10 @@ class SetUp(QtGui.QWidget):
     def get_outfile(self):
         self.save_file = QtGui.QFileDialog.getSaveFileName(self)
         self.save_btn.setText('Done')
-        
+    
+    
+    # File delimeter settings. Both I and V files must have same delimeter
+    
     def delimiter_select_set(self, text):
         print(text)
         
@@ -118,6 +131,8 @@ class SetUp(QtGui.QWidget):
         elif b.text() =='comma':
             self.delimiter = ","
             print(self.delimiter)
+    
+    ## Main matching function
     def run_matching(self):
         #print('Matching!')
         #print(self.t_file)
