@@ -9,7 +9,9 @@ UI used to combine the multiple files collected while taking flash sintering mea
 
 * _Temperature recording must be started before and ended after all other measurments to ensure complete data_
 
-* Current measurements and Voltage measurements files are the exported .csv files from the Agilent and  Keithly Excel plugins.
+* Current measurements and Voltage measurements files are the exported .csv or .txt files from the Agilent and  Keithly Excel plugins.
+* _Both files should be in the same .csv or .txt format_
 
 ## Freeze and .exe
-A .exe has been created to run on Windows 7 without the requirement of Python
+A .exe has been created using cx_Freeze to run on Windows 7 (Ok on Win10) without the requirement of Python
+To run freeze, run setup.py
